@@ -18,8 +18,8 @@ async def start():
     from core.utils.commands import commands
     await bot.set_my_commands(commands)
 
-    from core.handlers import menu, lesson
-    dp.include_routers(menu.router, lesson.router)
+    from core.handlers import menu, lesson_btn, lessons
+    dp.include_routers(menu.router, lesson_btn.router, lessons.router)
 
     try:
         await bot.delete_webhook(drop_pending_updates=True)
