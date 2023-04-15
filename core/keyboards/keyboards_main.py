@@ -19,7 +19,7 @@ def start_kb():
 
 def main_back_kb():
     back = ReplyKeyboardBuilder()
-    back.add(KeyboardButton(text="Назад", callback_data="back_to_main_menu"))
+    back.add(KeyboardButton(text="Назад к меню", callback_data="back_to_main_menu"))
 
     back.adjust(1)
     return back.as_markup(resize_keyboard=True, one_time_keyboard=True,
@@ -27,15 +27,20 @@ def main_back_kb():
 
 
 def lessons_kb():
-    less_name = ['Работа с сообщениями', 'Кнопки', 'Роутеры, структура', 'Фильтры']
-    lessons = InlineKeyboardBuilder()
+    less_name = ['Работа с сообщениями', 'Кнопки', 'Роутеры, структура', 'Фильтры', 'Назад']
+    less_callback = ['less_01', 'less_02', 'less_03', 'less_04', 'back_to_main_menu']
+    #
+    # lessons = InlineKeyboardBuilder()
+    # number_less: int = 1
+    # for i in less_name:
+    #     lessons.add(InlineKeyboardButton(text=f"Урок №{number_less} {i}", callback_data=f"less_{number_less}"))
+    #     number_less += 1
+    #
+    # lessons.add(InlineKeyboardButton(text="Назад", callback_data="back_to_main_menu"))
+    #
+    # lessons.adjust(2)
+    # return lessons.as_markup()
 
-    number_less: int = 1
-    for i in less_name:
-        lessons.add(InlineKeyboardButton(text=f"Урок №{number_less} {i}", callback_data=f"less_{number_less}"))
-        number_less += 1
-
-    lessons.add(InlineKeyboardButton(text="Назад", callback_data="back_to_main_menu"))
-
-    lessons.adjust(2)
-    return lessons.as_markup()
+    return InlineKeyboardBuilder().add(*[InlineKeyboardButton(
+        text=f"Урок №{count} {value}", callback_data=less_callback[count]) for count, value in
+        enumerate(less_name, start=0)]).adjust(2).as_markup()

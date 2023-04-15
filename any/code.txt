@@ -1,0 +1,2 @@
+await message.answer(f'За какой промежуток времени показать рейтинг ?\n'
+    f'3) За день', reply_markup=kb_book_eval)
